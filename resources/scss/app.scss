@@ -1,1 +1,133 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: unset;
+
+    &:hover{
+        color: unset;
+    }
+}
+
+// Assets
+
+nav{
+
+    background-color: #eef0ef;
+
+    box-shadow: 4px 8px 15px rgba(0, 0, 0, .4);
+
+    #logo{
+        height: 100px;
+
+        img{
+            height: 100%;
+        }
+    }
+}
+
+#home{
+    padding-top:80px;
+
+    min-height: 650px;
+
+    background-color: black;
+
+    ._container{
+        margin: 0px auto;
+        padding: 50px 0;
+
+        width: 80%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        color: white;
+        font-family: 'Bruno Ace', cursive;
+
+        .left-inner{
+
+            #first-sec{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+
+                #hello{
+                    font-size: 2.4em;
+                }
+                #_row{
+                    height: 2px;
+                    width: 500px;
+
+                    background-color: white;
+
+                    border-radius: 20px;
+                }
+            }
+
+            #name{
+                font-size: 3.4em;
+            }
+
+            #grade{
+                font-size: 1.6em;
+            }
+        }
+
+        .right-inner{
+
+            #img-container{
+                height: 400px;
+
+                img{
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+// Admin show
+#admin_show{
+    
+    #info-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+
+        #img-container{
+            width: 180%;
+
+            border-radius: 30px;
+            overflow: hidden;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+
+// Admin edit
+
+#admin_edit_create{
+
+    #proj-title{
+        padding-top: 30px;
+
+        font-size: 2.4em;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+    }
+}

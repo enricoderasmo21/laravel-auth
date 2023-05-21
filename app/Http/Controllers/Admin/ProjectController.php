@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -15,7 +16,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -25,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -36,7 +39,14 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validation($request);
+
+        $formData = $request->all();
+        $newProject = new Project();
+        $newProject->fill($formData);
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show', $newProject->slug);
     }
 
     /**
@@ -47,7 +57,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -58,7 +68,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -70,7 +80,11 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $this->validation($request);
+        
+        $formData = $request->all();
+        $project->update($formData);
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**
@@ -81,6 +95,45 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        
+        return redirect()->route('admin.projects.index');
+    }
+
+    private function validation($request){
+
+        $formData = $request->all();
+
+        $validator = Validator::make($formData, [
+
+            // Qui va inserito l'array
+
+            'title' => 'required|max:50|min:4',
+            'description' => 'required|max:800|min:10',
+            'image' => 'required',
+            'creation_date' => 'required|date',
+            'techs' => 'required|max:50',
+            'slug' => 'required', 
+        ], [
+            'title.required' => 'Devi inserire il titolo del progetto!',
+            'title.max' => 'Non puoi inserire più di 50 caratteri!',
+            'title.min' => 'Devi inserire almeno 4 caratteri!',
+
+            'description.required' => 'Devi inserire la descrizione del progetto!',
+            'description.max' => 'Non puoi inserire più di 1000 caratteri!',
+            'description.min' => 'Devi inserire almeno 10 caratteri!',
+
+            'image.required' => "Devi inserire il percorso dell'immagine del progetto!",
+
+            'creation_date.required' => 'Devi inserire la data del progetto!',
+            'creation_date.date' => 'Questo campo deve contenere una data valida!',
+
+            'techs.required' => 'Devi inserire il tipo di progetto!',
+            'techs.max' => 'Non puoi inserire più di 50 caratteri!',
+
+            'slug.required' => "Devi inserire l'artista/gli artisti del progetto!",
+        ])->validate(); 
+        
+        return $validator;
     }
 }
