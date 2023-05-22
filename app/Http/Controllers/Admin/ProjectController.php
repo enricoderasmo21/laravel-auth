@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -44,6 +45,7 @@ class ProjectController extends Controller
         $formData = $request->all();
         $newProject = new Project();
         $newProject->fill($formData);
+        $newProject->slug = Str::slug($newProject->title);
         $newProject->save();
 
         return redirect()->route('admin.projects.show', $newProject->slug);
@@ -83,6 +85,7 @@ class ProjectController extends Controller
         $this->validation($request);
         
         $formData = $request->all();
+        $project->slug = Str::slug($formData['title'], '-');
         $project->update($formData);
         return redirect()->route('admin.projects.show', $project->slug);
     }

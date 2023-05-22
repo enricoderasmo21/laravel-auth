@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.admin-layout')
 
 @section('content')
 
@@ -61,17 +61,6 @@
               <input type="text" class="form-control @error('techs') is-invalid @enderror" id="techs" name="techs" value='{{old('techs') ?? $project->techs}}'>
               
               @error('techs')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-              @enderror 
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label text-light" for="slug">Slug</label>
-              <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value='{{old('slug') ?? $project->slug}}'>
-              
-              @error('slug')
               <div class="invalid-feedback">
                 {{$message}}
               </div>

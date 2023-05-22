@@ -17,14 +17,13 @@
                 Junior Web Developer
             </div>
             <button class="btn btn-outline-danger mt-5">
-                <a href="">PROJECTS</a> 
+                <a href="{{route('projects.index')}}">PROJECTS</a> 
             </button>
         </div>
     
         <div class="right-inner">
             <div id="img-container">
                 <img src="https://ltidecivil.tecnico.ulisboa.pt/wp-content/uploads/2019/09/HTML5_Badge_512.png" alt="">
-
             </div>
     
         </div>
