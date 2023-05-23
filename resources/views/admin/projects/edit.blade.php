@@ -67,7 +67,7 @@
               @enderror 
             </div>
 
-            <button type="submit" class="btn btn-primary">MODIFICA</button>
+            <button type="submit" class="btn btn-outline-danger">MODIFICA</button>
         </form>
     </div>
 </div>

@@ -36,7 +36,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
 });
 
-Route::resource('/guest/projects', HomeController::class)->parameters(['projects' => 'project:slug']);
+Route::resource('guest/projects', HomeController::class)->parameters(['projects' => 'project:slug']);
 
 
 require __DIR__.'/auth.php';

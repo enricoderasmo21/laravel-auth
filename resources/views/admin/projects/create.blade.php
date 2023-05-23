@@ -5,6 +5,9 @@
 <div id="admin_edit_create" class="bg-black">
 
     <div class="container">
+        @if($errors->any())
+        errore trovato
+        @endif
     
         <h2 id="proj-title">Aggiungi un nuovo progetto</h2>
 
